@@ -1,20 +1,27 @@
 <div class="container">
   <h1>My tasks</h1>
-
-  <% @tasks.each do |task| %>
     <div>
-      <input type="checkbox" <%= task.checked %> disabled>
-      <label><%= link_to task.title, task_path(task) %> - </label>
-      <%= link_to task_path(task),
-        method: :delete,
-        data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-trash-alt" ></i>
-      <% end %>
-    </div>
-  <% end %>
+      <i class="fas fa-plus"></i> <%= link_to "New task", tasks_new_path %>
+    </div><br>
 
-  <div>
-    <i class="fas fa-plus"></i> <%= link_to "New task", tasks_new_path %>
+  <div class="row">
+    <% @tasks.each do |task| %>
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= task.title %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">Check done ? <input type="checkbox" <%= task.checked %> disabled></h6>
+          <p class="card-text"><%= task.details %></p>
+          <%= link_to "Details", task_path(task) %> -
+          <%= link_to task_path(task),
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+              <i class="fas fa-trash-alt" ></i>
+          <% end %>
+        </div>
+      </div><br>
+    <% end %>
   </div>
-
 </div>
+
+
+
